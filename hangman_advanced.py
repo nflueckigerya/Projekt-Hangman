@@ -119,3 +119,6 @@ secretWords = [
     "Helper",
     "Kernel"
 ]
+
+secretWord = secretWords[random.randint(0,59)]
+print(secretWord)
