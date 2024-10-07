@@ -120,5 +120,13 @@ secretWords = [
     "Kernel"
 ]
 
-secretWord = secretWords[random.randint(0,59)]
-print(secretWord)
+# wählt ein random Wort von der Liste
+def choseWord():
+  secretWord = secretWords[random.randint(0,59)]
+  secretWord = list(secretWord)
+  print(secretWord)
+  # erstellt die userguess liste
+  userGuess = ("_ ") * len(secretWord)
+  print(userGuess)
+
+choseWord()
