@@ -135,7 +135,7 @@ def main():
   print(HANGMANPICS[life] + "\n")
   print(userGuess + "\n")
   # überprüft ob das Wort noch nicht erraten ist
-  while userGuess.replace(" ", "") != secretWord:
+  while "_" in userGuess:
     # fragt nach Buchstabe
     guess = input("Guess a letter:\n")
     guess = guess.upper()
@@ -155,7 +155,8 @@ def main():
       print("Your guess was correct!\n")
       print(HANGMANPICS[life], "\n")
       print(userGuess + "\n")
-      print("Already guessed letters:\n" + " ".join(alreadyGuessed))
+      if "_" in userGuess:
+        print("Already guessed letters:\n" + " ".join(alreadyGuessed))
     elif guess not in secretWord: 
       # printed das entsprechende Menü + überprüft ob noch Versuche vorhanden sind
       life = life + 1
@@ -167,6 +168,7 @@ def main():
         print("YOU LOST!")
         break
   # winscreen
-  print("YOU WON!")
+  if life < 6:
+    print("YOU WON!")
 
 main()
