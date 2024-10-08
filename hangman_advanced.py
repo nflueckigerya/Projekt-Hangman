@@ -132,10 +132,10 @@ def main():
   userGuess = ("_ ") * len(secretWord)
   #Liste mit den bereits falsch geratenen Buchstaben
   alreadyGuessed = []
+  print(HANGMANPICS[life] + "\n")
+  print(userGuess + "\n")
   # überprüft ob das Wort noch nicht erraten ist
   while userGuess.replace(" ", "") != secretWord:
-    print(HANGMANPICS[0] + "\n")
-    print(userGuess)
     # fragt nach Buchstabe
     guess = input("Guess a letter:\n")
     guess = guess.upper()
@@ -150,23 +150,23 @@ def main():
       # fügt guess dem userGuess guess hinzu und zeigt dann die Überschrift
       positionGuess = secretWord.index(guess)
       userGuess = list(userGuess)
-      userGuess = userGuess.insert(positionGuess*2, guess)
+      userGuess[positionGuess*2] = guess
       userGuess = "".join(userGuess)
-      print(HANGMANPICS[life] + "\n")
+      print("Your guess was correct!\n")
+      print(HANGMANPICS[life], "\n")
       print(userGuess + "\n")
       print("Already guessed letters:\n" + " ".join(alreadyGuessed))
-    else: 
+    elif guess not in secretWord: 
       # printed das entsprechende Menü + überprüft ob noch Versuche vorhanden sind
       life = life + 1
+      print("Your guess was incorrect!\n")
       print(HANGMANPICS[life])
+      print(userGuess + "\n")
       print("Already guessed letters:\n" + " ".join(alreadyGuessed))
       if life == 6:
         print("YOU LOST!")
         break
   # winscreen
   print("YOU WON!")
-
-    
-
 
 main()
