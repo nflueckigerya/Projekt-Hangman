@@ -149,36 +149,20 @@ def mainOnePlayer():
     # überprüft ob guess richtig ist
     if guess in secretWord:
       # fügt guess dem userGuess guess hinzu und zeigt dann die Überschrift
-      # wenn der Buchstabe einmal vorkommt
-      if secretWord.count(guess) == 1:
+      for i in range(secretWord.count(guess)):
         positionGuess = secretWord.index(guess)
         userGuess = list(userGuess)
         userGuess[positionGuess*2] = guess
         userGuess = "".join(userGuess)
-        print("Your guess was correct!\n")
-        print(HANGMANPICS[life], "\n")
-        print(userGuess + "\n")
-        if "_" in userGuess:
-          print("Already guessed letters:\n" + " ".join(alreadyGuessed))
-      # wenn der Buchstabe ein zweites mal vorkommt
-      elif secretWord.count(guess) == 2:
-        # erstes mal
-        positionGuess = secretWord.index(guess)
-        userGuess = list(userGuess)
-        userGuess[positionGuess*2] = guess
-        userGuess = "".join(userGuess)
-        # zweites mal
         secretWord[positionGuess] = "+"
-        positionGuess = secretWord.index(guess)
-        userGuess = list(userGuess)
-        userGuess[positionGuess*2] = guess
-        userGuess = "".join(userGuess)
-        secretWord[secretWord.index("+")] = guess
-        print("Your guess was correct!\n")
-        print(HANGMANPICS[life], "\n")
-        print(userGuess + "\n")
-        if "_" in userGuess:
-          print("Already guessed letters:\n" + " ".join(alreadyGuessed))
+      secretWord = "".join(secretWord)
+      secretWord = secretWord.replace("+", guess)
+      secretWord = list(secretWord)
+      print("Your guess was correct!\n")
+      print(HANGMANPICS[life], "\n")
+      print(userGuess + "\n")
+      if "_" in userGuess:
+        print("Already guessed letters:\n" + " ".join(alreadyGuessed))
     elif guess not in secretWord: 
       # printed das entsprechende Menü + überprüft ob noch Versuche vorhanden sind
       life = life + 1
