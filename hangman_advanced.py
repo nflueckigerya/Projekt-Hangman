@@ -165,6 +165,7 @@ def main():
       print(userGuess + "\n")
       print("Already guessed letters:\n" + " ".join(alreadyGuessed))
       if life == 6:
+        print("The word was: " + "".join(secretWord))
         print("YOU LOST!")
         break
   # winscreen
@@ -172,3 +173,4 @@ def main():
     print("YOU WON!")
 
 main()
+exit(0)
