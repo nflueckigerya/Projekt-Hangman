@@ -1,4 +1,5 @@
 import random
+
 HANGMANPICS = ['''
 
   +---+
@@ -119,7 +120,6 @@ secretWords = [
     "Helper",
     "Kernel"
 ]
-
 
 def mainOnePlayer():
   # anzahl versuche
