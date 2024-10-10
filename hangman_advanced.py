@@ -168,8 +168,8 @@ def mainOnePlayer():
       life = life + 1
       print("Your guess was incorrect!\n")
       print(HANGMANPICS[life])
-      print(userGuess + "\n")
-      print("Already guessed letters:\n" + " ".join(alreadyGuessed))
+      print("\n" + userGuess + "\n")
+      print("Already guessed letters:\n" + " ".join(alreadyGuessed) + "\n")
       # wenn keine versuche vorhanden sind Lossscreen
       if life == 6:
         print("\nThe word was: " + "".join(secretWord))
