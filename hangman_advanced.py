@@ -219,6 +219,27 @@ def winscreen():
     again = again.lower()
   return again
 
+def losescreen():
+  print("+--------------------+")
+  print("¦     YOU LOST!      ¦")
+  print("¦  HE LEFT US! RIP!  ¦")
+  print("¦                    ¦")
+  print("¦        +---+       ¦")
+  print("¦        |   |       ¦")
+  print("¦        O   |       ¦")
+  print("¦       /|\  |       ¦")
+  print("¦       / \  |       ¦")
+  print("¦            |       ¦")
+  print("¦     ==========     ¦")
+  print("+--------------------+")
+  again = input("")
+  again = again.lower()
+  while again != "yes" and again != "no":
+    print("(yes or no)")
+    again = input("")
+    again = again.lower()
+  return again
+
 #winscreen()
 #startscreen()
 print(mainOnePlayer())
