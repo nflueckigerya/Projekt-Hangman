@@ -196,6 +196,29 @@ def mainOnePlayer():
   if life < 6:
     print("YOU WON!\n")
 
-startscreen()
+def winscreen():
+  print("+--------------------+")
+  print("¦  YOU GOT IT RIGHT! ¦")
+  print("¦      YOU  WON!     ¦")
+  print("¦                    ¦")
+  print("¦             +---+  ¦")
+  print("¦             |   |  ¦")
+  print("¦                 |  ¦")
+  print("¦      O          |  ¦")
+  print("¦     /|\         |  ¦")
+  print("¦     / \         |  ¦")
+  print("¦ ================== ¦")
+  print("¦  WANNA PLAY AGAIN? ¦")
+  print("+--------------------+")
+  again = input("")
+  again = again.lower()
+  while again != "yes" and again != "no":
+    print("(yes or no)")
+    again = input("")
+    again = again.lower()
+  return again
+
+winscreen()
+#startscreen()
 #mainOnePlayer()
 exit(0)
