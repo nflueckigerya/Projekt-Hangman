@@ -140,10 +140,10 @@ def mainOnePlayer():
     guess = input("Guess a letter:\n")
     guess = guess.upper()
     # überprüft ob der guess den richtigen Datentyp hat und nicht ein bereits geratener Buchstabe ist
-    while guess in alreadyGuessed:
-      print("You already tried this letter or your input is invalid")
+    while guess in alreadyGuessed or len(guess) > 1:
+      print("\nYou already tried this letter or your input is invalid")
       print("Already guessed letters:\n" + " ".join(alreadyGuessed))
-      guess = input("Guess a letter:\n")
+      guess = input("\nGuess a letter:\n")
       guess = guess.upper()
     alreadyGuessed.append(guess)
     # überprüft ob guess richtig ist
