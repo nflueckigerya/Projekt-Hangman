@@ -172,7 +172,7 @@ def mainOnePlayer():
       print("Already guessed letters:\n" + " ".join(alreadyGuessed) + "\n")
       # wenn keine versuche vorhanden sind Lossscreen
       if life == 6:
-        print("\nThe word was: " + "".join(secretWord))
+        print("The word was: " + "".join(secretWord))
         print("\nYOU LOST!\n")
         break
   # winscreen
