@@ -121,6 +121,23 @@ secretWords = [
     "Kernel"
 ]
 
+def startscreen():
+  print("+--------------------+")
+  print("¦ WELCOME TO HANGMAN ¦")
+  print("¦                    ¦")
+  print("¦        +---+       ¦")
+  print("¦        |   |       ¦")
+  print("¦        O   |       ¦")
+  print("¦       /|\  |       ¦")
+  print("¦       / \  |       ¦")
+  print("¦            |       ¦")
+  print("¦     ==========     ¦")
+  print("¦  Press R to start  ¦")
+  print("+--------------------+")
+  ready = input("")
+  while ready != "R":
+    ready = input("")
+
 def mainOnePlayer():
   # anzahl versuche
   life = 0
@@ -179,5 +196,6 @@ def mainOnePlayer():
   if life < 6:
     print("YOU WON!\n")
 
-mainOnePlayer()
+startscreen()
+#mainOnePlayer()
 exit(0)
