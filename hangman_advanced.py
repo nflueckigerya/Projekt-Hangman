@@ -132,7 +132,7 @@ def startscreen():
   print("¦       / \  |       ¦")
   print("¦            |       ¦")
   print("¦     ==========     ¦")
-  print("¦  Press R to start  ¦")
+  print("¦   Press R + Enter  ¦")
   print("+--------------------+")
   ready = input("")
   while ready != "R":
