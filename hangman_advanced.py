@@ -156,6 +156,8 @@ def mainOnePlayer():
     # fragt nach Buchstabe
     guess = input("Guess a letter:\n")
     guess = guess.upper()
+    if guess == "".join(secretWord):
+      return "win"
     # überprüft ob der guess den richtigen Datentyp hat und nicht ein bereits geratener Buchstabe ist
     while guess in alreadyGuessed or len(guess) > 1:
       print("\nYou already tried this letter or your input is invalid")
@@ -189,12 +191,11 @@ def mainOnePlayer():
       print("Already guessed letters:\n" + " ".join(alreadyGuessed) + "\n")
       # wenn keine versuche vorhanden sind Lossscreen
       if life == 6:
-        print("The word was: " + "".join(secretWord))
-        print("\nYOU LOST!\n")
-        break
+        print("\nThe word was: " + "".join(secretWord) + "\n")
+        return "lose"
   # winscreen
   if life < 6:
-    print("YOU WON!\n")
+    return "win"
 
 def winscreen():
   print("+--------------------+")
@@ -218,7 +219,6 @@ def winscreen():
     again = again.lower()
   return again
 
-winscreen()
+#winscreen()
 #startscreen()
-#mainOnePlayer()
-exit(0)
+print(mainOnePlayer())
