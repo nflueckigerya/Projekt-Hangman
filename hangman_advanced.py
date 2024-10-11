@@ -242,7 +242,7 @@ def losescreen():
     again = again.lower()
   return again
 
-def mainTwoplayer():
+def mainTwoPlayer():
   # anzahl versuche
   life = 0
   # automatisch zwei durchgägne damit jeder spieler einmal raten darf
@@ -265,7 +265,7 @@ def mainTwoplayer():
       guess = input("Player" + str(i+1) + ": Guess a letter or the hidden word:\n")
       guess = guess.upper()
       if guess == "".join(secretWord):
-        return "win"
+        print("You got it!\n")
       # überprüft ob der guess den richtigen Datentyp hat und nicht ein bereits geratener Buchstabe ist
       while guess in alreadyGuessed or len(guess) > 1:
         print("\nYou already tried this letter or your input is invalid")
@@ -300,25 +300,40 @@ def mainTwoplayer():
         # wenn keine versuche vorhanden sind Lossscreen
         if life == 6:
           print("\nThe word was: " + "".join(secretWord) + "\n")
-          return "lose"
+          print(HANGMANPICS[life] + "\n")
+          print("You lost!")
     # winscreen
     if life < 6:
-      return "win"
+      print("You got it!\n")
     
 def mainGame():
   # script das alle defs zusammenhängt
   readystart = startscreen()
-  fun = "yes"
   if readystart == "ready":
-    while True:
-      res = mainOnePlayer()
-      if res == "win":
-        winagain = winscreen()
-        if winagain == "no":
-          exit(0)
-      if res == "lose":
-        losagain = losescreen()
-        if losagain == "no":
+    player = input("Oneplayer(1) or Twoplayer(2)?")
+    while player != "1" and player != "2":
+      print("Invalid Input")
+      player = input("Oneplayer(1) or Twoplayer(2)? \n")
+    if player == "1":
+      while True:
+        res = mainOnePlayer()
+        if res == "win":
+          winagain = winscreen()
+          if winagain == "no":
+           exit(0)
+        if res == "lose":
+          losagain = losescreen()
+          if losagain == "no":
+            exit(0)
+    elif player == "2":
+      while True:
+        res = mainTwoPlayer()
+        againTwo = input("Wanna play again?")
+        againTwo = againTwo.lower()
+        while againTwo != "yes" and againTwo != "Two":
+          print("yes/no")
+          againTwo = input("Wanna play again?")
+        if againTwo == "no":
           exit(0)
 
-mainTwoplayer()
+mainGame()
