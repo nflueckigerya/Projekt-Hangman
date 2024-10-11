@@ -155,7 +155,7 @@ def mainOnePlayer():
   # überprüft ob das Wort noch nicht erraten ist
   while "_" in userGuess:
     # fragt nach Buchstabe
-    guess = input("Guess a letter:\n")
+    guess = input("Guess a letter or the hidden word:\n")
     guess = guess.upper()
     if guess == "".join(secretWord):
       return "win"
@@ -163,7 +163,7 @@ def mainOnePlayer():
     while guess in alreadyGuessed or len(guess) > 1:
       print("\nYou already tried this letter or your input is invalid")
       print("Already guessed letters:\n" + " ".join(alreadyGuessed))
-      guess = input("\nGuess a letter:\n")
+      guess = input("\nGuess a letter or the hidden word:\n")
       guess = guess.upper()
     alreadyGuessed.append(guess)
     # überprüft ob guess richtig ist
@@ -242,17 +242,83 @@ def losescreen():
     again = again.lower()
   return again
 
-# script das alle defs zusammenhängt
-readystart = startscreen()
-fun = "yes"
-if readystart == "ready":
-  while True:
-    res = mainOnePlayer()
-    if res == "win":
-      winagain = winscreen()
-      if winagain == "no":
-        exit(0)
-    if res == "lose":
-      losagain = losescreen()
-      if losagain == "no":
-        exit(0)
+def mainTwoplayer():
+  # anzahl versuche
+  life = 0
+  # automatisch zwei durchgägne damit jeder spieler einmal raten darf
+  for i in range(2):
+    if i == 0:
+      firstplayer = 2
+    if i == 1:
+      firstplayer = 1
+    secretWord = input("Player" + str(firstplayer) + ": Your secret word:\n")
+    secretWord = secretWord.upper()
+    secretWord = list(secretWord)
+    # erstellt die userguess Liste
+    userGuess = ("_ ") * len(secretWord)
+    #Liste mit den bereits falsch geratenen Buchstaben
+    alreadyGuessed = []
+    print(HANGMANPICS[life] + "\n")
+    print(userGuess + "\n")
+    while "_" in userGuess:
+      # fragt nach Buchstabe
+      guess = input("Player" + str(i+1) + ": Guess a letter or the hidden word:\n")
+      guess = guess.upper()
+      if guess == "".join(secretWord):
+        return "win"
+      # überprüft ob der guess den richtigen Datentyp hat und nicht ein bereits geratener Buchstabe ist
+      while guess in alreadyGuessed or len(guess) > 1:
+        print("\nYou already tried this letter or your input is invalid")
+        print("Already guessed letters:\n" + " ".join(alreadyGuessed))
+        guess = input("\nPlayer" + str(i+1) + ": Guess a letter or the hidden word:\n")
+        guess = guess.upper()
+      alreadyGuessed.append(guess)
+      # überprüft ob guess richtig ist
+      if guess in secretWord:
+        # fügt guess dem userGuess guess hinzu und zeigt dann die Überschrift
+        for i in range(secretWord.count(guess)):
+          positionGuess = secretWord.index(guess)
+          userGuess = list(userGuess)
+          userGuess[positionGuess*2] = guess
+          userGuess = "".join(userGuess)
+          secretWord[positionGuess] = "+"
+        secretWord = "".join(secretWord)
+        secretWord = secretWord.replace("+", guess)
+        secretWord = list(secretWord)
+        print("Your guess was correct!\n")
+        print(HANGMANPICS[life], "\n")
+        print(userGuess + "\n")
+        if "_" in userGuess:
+          print("Already guessed letters:\n" + " ".join(alreadyGuessed))
+      elif guess not in secretWord: 
+        # printed das entsprechende Menü + überprüft ob noch Versuche vorhanden sind
+        life = life + 1
+        print("Your guess was incorrect!\n")
+        print(HANGMANPICS[life])
+        print("\n" + userGuess + "\n")
+        print("Already guessed letters:\n" + " ".join(alreadyGuessed) + "\n")
+        # wenn keine versuche vorhanden sind Lossscreen
+        if life == 6:
+          print("\nThe word was: " + "".join(secretWord) + "\n")
+          return "lose"
+    # winscreen
+    if life < 6:
+      return "win"
+    
+def mainGame():
+  # script das alle defs zusammenhängt
+  readystart = startscreen()
+  fun = "yes"
+  if readystart == "ready":
+    while True:
+      res = mainOnePlayer()
+      if res == "win":
+        winagain = winscreen()
+        if winagain == "no":
+          exit(0)
+      if res == "lose":
+        losagain = losescreen()
+        if losagain == "no":
+          exit(0)
+
+mainTwoplayer()
