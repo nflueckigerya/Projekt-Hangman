@@ -1,4 +1,5 @@
 import random
+import getpass
 
 HANGMANPICS = ['''
 
@@ -251,7 +252,10 @@ def mainTwoPlayer():
       firstplayer = 2
     if i == 1:
       firstplayer = 1
-    secretWord = input("Player" + str(firstplayer) + ": Your secret word:\n")
+    secretWord = getpass.getpass("Player" + str(firstplayer) + ": Your secret word:\n")
+    while not secretWord.isalpha():
+      print("invalid secret word, please use onle letters:")
+      secretWord = getpass.getpass("Player" + str(firstplayer) + ": Your secret word:\n")
     secretWord = secretWord.upper()
     secretWord = list(secretWord)
     # erstellt die userguess Liste
