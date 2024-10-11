@@ -135,8 +135,9 @@ def startscreen():
   print("¦   Press R + Enter  ¦")
   print("+--------------------+")
   ready = input("")
-  while ready != "R":
+  while ready != "R" and ready != "r":
     ready = input("")
+  return "ready"
 
 def mainOnePlayer():
   # anzahl versuche
@@ -231,6 +232,7 @@ def losescreen():
   print("¦       / \  |       ¦")
   print("¦            |       ¦")
   print("¦     ==========     ¦")
+  print("¦  WANNA PLAY AGAIN? ¦")
   print("+--------------------+")
   again = input("")
   again = again.lower()
@@ -240,6 +242,17 @@ def losescreen():
     again = again.lower()
   return again
 
-#winscreen()
-#startscreen()
-print(mainOnePlayer())
+# script das alle defs zusammenhängt
+readystart = startscreen()
+fun = "yes"
+if readystart == "ready":
+  while True:
+    res = mainOnePlayer()
+    if res == "win":
+      winagain = winscreen()
+      if winagain == "no":
+        exit(0)
+    if res == "lose":
+      losagain = losescreen()
+      if losagain == "no":
+        exit(0)
