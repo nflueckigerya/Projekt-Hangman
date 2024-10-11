@@ -161,7 +161,7 @@ def mainOnePlayer():
     if guess == "".join(secretWord):
       return "win"
     # überprüft ob der guess den richtigen Datentyp hat und nicht ein bereits geratener Buchstabe ist
-    while guess in alreadyGuessed or len(guess) > 1:
+    while guess in alreadyGuessed or len(guess) > 1 or not guess.isalpha():
       print("\nYou already tried this letter or your input is invalid")
       print("Already guessed letters:\n" + " ".join(alreadyGuessed))
       guess = input("\nGuess a letter or the hidden word:\n")
@@ -270,8 +270,9 @@ def mainTwoPlayer():
       guess = guess.upper()
       if guess == "".join(secretWord):
         print("You got it!\n")
+        break
       # überprüft ob der guess den richtigen Datentyp hat und nicht ein bereits geratener Buchstabe ist
-      while guess in alreadyGuessed or len(guess) > 1:
+      while guess in alreadyGuessed or len(guess) > 1 or not guess.isalpha():
         print("\nYou already tried this letter or your input is invalid")
         print("Already guessed letters:\n" + " ".join(alreadyGuessed))
         guess = input("\nPlayer" + str(i+1) + ": Guess a letter or the hidden word:\n")
