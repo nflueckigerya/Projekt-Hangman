@@ -169,7 +169,7 @@ def mainOnePlayer():
     alreadyGuessed.append(guess)
     # überprüft ob guess richtig ist
     if guess in secretWord:
-      # fügt guess dem userGuess guess hinzu und zeigt dann die Überschrift
+      # fügt guess dem userGuess hinzu und zeigt dann das Menü
       for i in range(secretWord.count(guess)):
         positionGuess = secretWord.index(guess)
         userGuess = list(userGuess)
