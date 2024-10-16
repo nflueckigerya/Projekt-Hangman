@@ -269,7 +269,7 @@ def mainTwoPlayer():
       guess = input("Player" + str(i+1) + ": Guess a letter or the hidden word:\n")
       guess = guess.upper()
       if guess == "".join(secretWord):
-        print("You got it!\n")
+        print("\n")
         break
       # überprüft ob der guess den richtigen Datentyp hat und nicht ein bereits geratener Buchstabe ist
       while guess in alreadyGuessed or len(guess) > 1 or not guess.isalpha():
@@ -315,7 +315,7 @@ def mainGame():
   # script das alle defs zusammenhängt
   readystart = startscreen()
   if readystart == "ready":
-    player = input("Oneplayer(1) or Twoplayer(2)?")
+    player = input("One Player(1) or two Players(2)?")
     while player != "1" and player != "2":
       print("Invalid Input")
       player = input("Oneplayer(1) or Twoplayer(2)? \n")
