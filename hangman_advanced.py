@@ -307,6 +307,7 @@ def mainTwoPlayer():
           print("\nThe word was: " + "".join(secretWord) + "\n")
           print(HANGMANPICS[life] + "\n")
           print("You lost!")
+          break
     # winscreen
     if life < 6:
       print("You got it!\n")
