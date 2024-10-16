@@ -244,10 +244,10 @@ def losescreen():
   return again
 
 def mainTwoPlayer():
-  # anzahl versuche
-  life = 0
   # automatisch zwei durchgägne damit jeder spieler einmal raten darf
   for i in range(2):
+    # anzahl versuche
+    life = 0
     if i == 0:
       firstplayer = 2
     if i == 1:
